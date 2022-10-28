@@ -12,7 +12,7 @@ app.use(cors());
 
 
 //const getInvolvedRouter = require('./routes/getInvolvedRouter')
-// const mongoConnection = `mongodb+srv://mpollachek81:${mongoPassword}@awu0.${mongoString}.mongodb.net/allWorkersUnionDB?retryWrites=true&w=majority`;
+//const mongoConnection = `mongodb+srv://mpollachek81:${mongoPassword}@awu0.${mongoString}.mongodb.net/allWorkersUnionDB?retryWrites=true&w=majority`;
 const port = process.env.PORT || 3001;
 
 const uri = process.env.MONGODB_URI;
@@ -20,8 +20,6 @@ const uri = process.env.MONGODB_URI;
 mongoose.connect(uri, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-  useCreateIndex: true,
-  useFindAndModify: false,
 })
 .then(() => {
   app.listen(port);
@@ -30,8 +28,8 @@ mongoose.connect(uri, {
 
 //app.use('/GetInvolvedEmails', getInvolvedRouter);
 
-app.get("/getEmails", async (req, res) => {
-  await StrikeEmailsModel.countDocuments({}, (err, result) => {
+app.get("/getEmails", (req, res) => {
+  StrikeEmailsModel.countDocuments({}, (err, result) => {
     if (err) {
       res.json(err);
     } else {
