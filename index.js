@@ -15,7 +15,9 @@ app.use(cors());
 // const mongoConnection = `mongodb+srv://mpollachek81:${mongoPassword}@awu0.${mongoString}.mongodb.net/allWorkersUnionDB?retryWrites=true&w=majority`;
 const port = process.env.PORT || 3001;
 
-mongoose.connect(process.env.MONGODB_URI, {
+const uri = process.env.MONGODB_URI;
+
+mongoose.connect(uri, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true,
@@ -28,8 +30,8 @@ mongoose.connect(process.env.MONGODB_URI, {
 
 //app.use('/GetInvolvedEmails', getInvolvedRouter);
 
-app.get("/getEmails", (req, res) => {
-  StrikeEmailsModel.countDocuments({}, (err, result) => {
+app.get("/getEmails", async (req, res) => {
+  await StrikeEmailsModel.countDocuments({}, (err, result) => {
     if (err) {
       res.json(err);
     } else {
