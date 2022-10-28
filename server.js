@@ -31,7 +31,7 @@ mongoose.connect(uri, {
 app.get("/getEmails", (req, res) => {
   StrikeEmailsModel.countDocuments({}, (err, result) => {
     if (err) {
-      res.json(err);
+      res.json("Error: " + err);
     } else {
       res.json(result);
     }
