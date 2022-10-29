@@ -28,7 +28,7 @@ mongoose.connect(uri, {
 
 //app.use('/GetInvolvedEmails', getInvolvedRouter);
 
-app.get("/getEmails", (req, res) => {
+app.get("/api/getEmails", (req, res) => {
   StrikeEmailsModel.countDocuments({}, (err, result) => {
     if (err) {
       res.json("Error: " + err);
@@ -38,7 +38,7 @@ app.get("/getEmails", (req, res) => {
   });
 });
 
-app.post("/addEmail", async (req, res) => {
+app.post("/api/addEmail", async (req, res) => {
   const r = req.body.values
   console.log("full req: " + JSON.stringify(r))
   if (r.strike) {
