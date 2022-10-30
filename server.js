@@ -8,10 +8,7 @@ const newsletterEmailsModel = require('./models/NewsletterEmails');
 const cors = require("cors");
 
 app.use(express.json());
-app.use(cors({
-  origin: "*",
-  credentials: true
-}));
+app.use(cors());
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "allworkersunion.com"); 
