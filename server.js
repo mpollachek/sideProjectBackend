@@ -3,25 +3,25 @@ const app = express();
 const mongoose = require('mongoose')
 const StrikeEmailsModel = require('./models/StrikeEmails');
 const newsletterEmailsModel = require('./models/NewsletterEmails');
-//const { mongoPassword, mongoString } = require('./config');
+const { mongoPassword, mongoString } = require('./config');
 
 const cors = require("cors");
 
 app.use(express.json());
 app.use(cors());
 
-// app.use(function(req, res, next) {
-//   res.header("Access-Control-Allow-Origin", "*"); 
-//   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-//   next();
-// });
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*"); 
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 
 
 //const getInvolvedRouter = require('./routes/getInvolvedRouter')
-//const mongoConnection = `mongodb+srv://mpollachek81:${mongoPassword}@awu0.${mongoString}.mongodb.net/allWorkersUnionDB?retryWrites=true&w=majority`;
+const uri = `mongodb+srv://mpollachek81:${mongoPassword}@awu0.${mongoString}.mongodb.net/allWorkersUnionDB?retryWrites=true&w=majority`;
 const port = process.env.PORT || 3001;
 
-const uri = process.env.MONGODB_URI;
+//const uri = process.env.MONGODB_URI;
 
 mongoose.connect(uri, {
   useNewUrlParser: true,
@@ -37,6 +37,7 @@ mongoose.connect(uri, {
 app.get("/api/getEmails", (req, res) => {
   res.set('Access-Control-Allow-Origin', 'http://localhost:3000');
   StrikeEmailsModel.countDocuments({}, (err, result) => {
+    res.set('Access-Control-Allow-Origin', 'http://localhost:3000');
     if (err) {
       res.json("Error: " + err);
     } else {
