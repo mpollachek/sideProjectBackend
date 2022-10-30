@@ -35,9 +35,9 @@ mongoose.connect(uri, {
 //app.use('/GetInvolvedEmails', getInvolvedRouter);
 
 app.get("/api/getEmails", (req, res) => {
-  res.set('Access-Control-Allow-Origin', 'http://localhost:3000');
+  res.set('Access-Control-Allow-Origin', '*');
   StrikeEmailsModel.countDocuments({}, (err, result) => {
-    res.set('Access-Control-Allow-Origin', 'http://localhost:3000');
+    res.set('Access-Control-Allow-Origin', '*');
     if (err) {
       res.json("Error: " + err);
     } else {
