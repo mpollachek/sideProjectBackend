@@ -4,17 +4,20 @@ const mongoose = require('mongoose')
 const StrikeEmailsModel = require('./models/StrikeEmails');
 const newsletterEmailsModel = require('./models/NewsletterEmails');
 const { mongoPassword, mongoString } = require('./config');
+const { createProxyMiddleware } = require('http-proxy-middleware')
 
 const cors = require("cors");
 
 app.use(express.json());
 app.use(cors());
 
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*"); 
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-});
+app.use('/api/*', createProxyMiddleware({target:'*', changeOrigin: true }));
+
+// app.use(function(req, res, next) {
+//   res.header("Access-Control-Allow-Origin", "*"); 
+//   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+//   next();
+// });
 
 
 //const getInvolvedRouter = require('./routes/getInvolvedRouter')
@@ -37,7 +40,6 @@ mongoose.connect(uri, {
 app.get("/api/getEmails", (req, res) => {
   res.set('Access-Control-Allow-Origin', '*');
   StrikeEmailsModel.countDocuments({}, (err, result) => {
-    res.set('Access-Control-Allow-Origin', '*');
     if (err) {
       res.json("Error: " + err);
     } else {
