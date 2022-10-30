@@ -10,6 +10,15 @@ const cors = require("cors");
 app.use(express.json());
 app.use(cors());
 
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "https://www.allworkersunion.com");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  next();
+});
+
 
 //const getInvolvedRouter = require('./routes/getInvolvedRouter')
 //const mongoConnection = `mongodb+srv://mpollachek81:${mongoPassword}@awu0.${mongoString}.mongodb.net/allWorkersUnionDB?retryWrites=true&w=majority`;
