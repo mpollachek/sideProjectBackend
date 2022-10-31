@@ -4,14 +4,14 @@ const mongoose = require('mongoose')
 const StrikeEmailsModel = require('./models/StrikeEmails');
 const newsletterEmailsModel = require('./models/NewsletterEmails');
 //const { mongoPassword, mongoString } = require('./config');
-//const { createProxyMiddleware } = require('http-proxy-middleware')
+const { createProxyMiddleware } = require('http-proxy-middleware')
 
 const cors = require("cors");
 
 app.use(express.json());
 app.use(cors());
 
-//app.use('/api/*', createProxyMiddleware({target:'*', changeOrigin: true }));
+app.use('/api/*', createProxyMiddleware({target:'*', changeOrigin: true }));
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*"); 
