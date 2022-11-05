@@ -10,7 +10,8 @@ const cors = require("cors");
 
 app.use(express.json());
 app.use(cors({
-  origin: '*'
+  origin: '*',
+  preflightContinue: false
 }));
 
 //app.use('/api/*', createProxyMiddleware({target:'*', changeOrigin: true }));
