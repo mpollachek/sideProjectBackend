@@ -36,7 +36,7 @@ app.all('/GetInvolved', function(req, res, next) {
 
 //const getInvolvedRouter = require('./routes/getInvolvedRouter')
 //const uri = `mongodb+srv://mpollachek81:${mongoPassword}@awu0.${mongoString}.mongodb.net/allWorkersUnionDB?retryWrites=true&w=majority`;
-const port = process.env.PORT || 3001;
+const port = process.env.PORT || 3000;
 
 const uri = process.env.MONGODB_URI;
 
