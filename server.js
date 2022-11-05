@@ -10,24 +10,24 @@ const cors = require("cors");
 
 app.use(express.json());
 app.use(cors({
-  origin: '*',
-  preflightContinue: false
+  origin: ['http://localhost:3000', 'https://www.allworkersunion.com'],
+  credentials: true
 }));
 
 //app.use('/api/*', createProxyMiddleware({target:'*', changeOrigin: true }));
 
-app.use(function(req, res, next) {
-  const allowedOrigins = ['http://localhost:3000', 'https://www.allworkersunion.com'];
-  const origin = req.headers.origin;
-  if (allowedOrigins.includes(origin)) {
-    res.setHeader('Access-Control-Allow-Origin', origin);
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
-res.setHeader('Access-Control-Allow-Credentials', true);
-    // res.header('Access-Control-Allow-HEaders', 'Content-Type, Authorization');
-  }
-  next();
-});
+// app.use(function(req, res, next) {
+//   const allowedOrigins = ['http://localhost:3000', 'https://www.allworkersunion.com'];
+//   const origin = req.headers.origin;
+//   if (allowedOrigins.includes(origin)) {
+//     res.setHeader('Access-Control-Allow-Origin', origin);
+//     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+// res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+// res.setHeader('Access-Control-Allow-Credentials', true);
+//     res.header('Access-Control-Allow-HEaders', 'Content-Type, Authorization');
+//   }
+//   next();
+// });
 
 
 //const getInvolvedRouter = require('./routes/getInvolvedRouter')
