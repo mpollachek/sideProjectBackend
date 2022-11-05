@@ -14,11 +14,11 @@ app.use(cors());
 //app.use('/api/*', createProxyMiddleware({target:'*', changeOrigin: true }));
 
 app.use(function(req, res, next) {
-  const allowedOrigins = ['localhost:3000', 'www.allworkersunion.com'];
+  const allowedOrigins = ['http://localhost:3000', 'https://www.allworkersunion.com'];
   const origin = req.headers.origin;
   if (allowedOrigins.includes(origin)) {
     res.setHeader('Access-Control-Allow-Origin', origin);
-    res.header('Access-Control-Allow-HEaders', 'Content-Type, Authorization');
+    // res.header('Access-Control-Allow-HEaders', 'Content-Type, Authorization');
   }
   return next();
 });
