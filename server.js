@@ -81,6 +81,7 @@ app.route("/api/getEmails")
 });
 
 app.route("/api/addEmail")
+.options(cors.corsWithOptions)
 .post( async (req, res, next) => {
   const r = req.body.values
   console.log("full req: " + JSON.stringify(r))
