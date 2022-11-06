@@ -11,18 +11,18 @@ const cors = require("./routes/cors");
 // app.use(cors())
 
 app.use(express.json());
-// app.use(cors({
-//   origin: ['http://localhost:3000', 'https://www.allworkersunion.com'],
-//   credentials: true
-// }));
+app.use(cors({
+  origin: ['http://localhost:3000', 'https://www.allworkersunion.com'],
+  credentials: true
+}));
 
-app.use(function (req, res, next) {
-  res.setHeader('Access-Control-Allow-Origin', 'https://www.allworkersunion.com');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
-  res.setHeader('Access-Control-Allow-Credentials', true);
-  next();
-  });
+// app.use(function (req, res, next) {
+//   res.setHeader('Access-Control-Allow-Origin', 'https://www.allworkersunion.com');
+//   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+//   res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+//   res.setHeader('Access-Control-Allow-Credentials', true);
+//   next();
+//   });
 
 //app.use('/api/*', createProxyMiddleware({target:'*', changeOrigin: true }));
 
