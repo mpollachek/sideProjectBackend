@@ -6,7 +6,7 @@ const newsletterEmailsModel = require('./models/NewsletterEmails');
 //const { mongoPassword, mongoString } = require('./config');
 //const { createProxyMiddleware } = require('http-proxy-middleware')
 
-const cors = require("./cors");
+const cors = require("./routes/cors");
 
 // app.use(cors())
 
