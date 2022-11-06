@@ -11,18 +11,18 @@ const cors = require("./cors");
 // app.use(cors())
 
 app.use(express.json());
-app.use(cors({
-  origin: ['http://localhost:3000', 'https://www.allworkersunion.com'],
-  credentials: true
-}));
+// app.use(cors({
+//   origin: ['http://localhost:3000', 'https://www.allworkersunion.com'],
+//   credentials: true
+// }));
 
-app.use(function (req, res, next) {
-  res.setHeader('Access-Control-Allow-Origin', 'https://www.allworkersunion.com');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
-  res.setHeader('Access-Control-Allow-Credentials', true);
-  next();
-  });
+// app.use(function (req, res, next) {
+//   res.setHeader('Access-Control-Allow-Origin', 'https://www.allworkersunion.com');
+//   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+//   res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+//   res.setHeader('Access-Control-Allow-Credentials', true);
+//   next();
+//   });
 
 //app.use('/api/*', createProxyMiddleware({target:'*', changeOrigin: true }));
 
@@ -67,7 +67,7 @@ mongoose.connect(uri, {
 
 
 
-getInvolvedRouter.route("/api/getEmails")
+app.route("/api/getEmails")
 .options(cors.corsWithOptions, (req, res) => res.sendStatus(200))
 .get(cors.cors, (req, res, next) => {
   res.set('Access-Control-Allow-Origin', '*');
@@ -80,7 +80,7 @@ getInvolvedRouter.route("/api/getEmails")
   });
 });
 
-getInvolvedRouter.route("/api/addEmail")
+app.route("/api/addEmail")
 .post( cors.corsWithOptions, async (req, res, next) => {
   const r = req.body.values
   console.log("full req: " + JSON.stringify(r))
