@@ -2,7 +2,9 @@ const cors = require('cors');
 
 const whitelist = ['http://localhost:3000', 'https://www.allworkersunion.com'];
 const corsOptionsDelegate = (req, callback) => {
-    let corsOptions;
+    let corsOptions = {
+      credentials: true
+    }
     console.log(req.header('Origin'));
     if(whitelist.indexOf(req.header('Origin')) !== -1) {
         corsOptions = { origin: true };
