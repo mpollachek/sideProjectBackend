@@ -8,11 +8,21 @@ const newsletterEmailsModel = require('./models/NewsletterEmails');
 
 const cors = require("cors");
 
+// app.use(cors())
+
 app.use(express.json());
 app.use(cors({
   origin: ['http://localhost:3000', 'https://www.allworkersunion.com'],
   credentials: true
 }));
+
+app.use(function (req, res, next) {
+  res.setHeader('Access-Control-Allow-Origin', 'https://www.allworkersunion.com');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+  res.setHeader('Access-Control-Allow-Credentials', true);
+  next();
+  });
 
 //app.use('/api/*', createProxyMiddleware({target:'*', changeOrigin: true }));
 
@@ -27,16 +37,16 @@ app.use(cors({
 //   next();
 // }});
 
-app.all('/GetInvolved', function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "X-Requested-With");
-  next()
-});
+// app.all('/GetInvolved', function(req, res, next) {
+//   res.header("Access-Control-Allow-Origin", "*");
+//   res.header("Access-Control-Allow-Headers", "X-Requested-With");
+//   next()
+// });
 
 
-//const getInvolvedRouter = require('./routes/getInvolvedRouter')
-//const uri = `mongodb+srv://mpollachek81:${mongoPassword}@awu0.${mongoString}.mongodb.net/allWorkersUnionDB?retryWrites=true&w=majority`;
-const port = process.env.PORT || 3000;
+// const getInvolvedRouter = require('./routes/getInvolvedRouter');
+// const uri = `mongodb+srv://mpollachek81:${mongoPassword}@awu0.${mongoString}.mongodb.net/allWorkersUnionDB?retryWrites=true&w=majority`;
+const port = process.env.PORT || 3001;
 
 const uri = process.env.MONGODB_URI;
 
@@ -46,10 +56,16 @@ mongoose.connect(uri, {
 })
 .then(() => {
   app.listen(port);
-  console.log("Server is Running - booyah");
+  console.log("Server is Running - booyah - " + port);
 });
 
-//app.use('/GetInvolvedEmails', getInvolvedRouter);
+// view engine setup
+// app.set('views', path.join(__dirname, 'views'));
+// app.set('view engine', 'jade');
+
+// app.use('/GetInvolvedEmails', getInvolvedRouter);
+
+
 
 app.get("/api/getEmails", (req, res) => {
   res.set('Access-Control-Allow-Origin', '*');
