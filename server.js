@@ -6,7 +6,7 @@ const newsletterEmailsModel = require('./models/NewsletterEmails');
 //const { mongoPassword, mongoString } = require('./config');
 //const { createProxyMiddleware } = require('http-proxy-middleware')
 
-const cors = require("cors");
+const cors = require("./cors");
 
 // app.use(cors())
 
@@ -67,7 +67,9 @@ mongoose.connect(uri, {
 
 
 
-app.get("/api/getEmails", (req, res) => {
+getInvolvedRouter.route("/api/getEmails")
+.options(cors.corsWithOptions, (req, res) => res.sendStatus(200))
+.get(cors.cors, (req, res, next) => {
   res.set('Access-Control-Allow-Origin', '*');
   StrikeEmailsModel.countDocuments({}, (err, result) => {
     if (err) {
@@ -78,7 +80,8 @@ app.get("/api/getEmails", (req, res) => {
   });
 });
 
-app.post("/api/addEmail", async (req, res) => {
+getInvolvedRouter.route("/api/addEmail")
+.post( cors.corsWithOptions, async (req, res, next) => {
   const r = req.body.values
   console.log("full req: " + JSON.stringify(r))
   if (r.strike) {
@@ -94,5 +97,5 @@ app.post("/api/addEmail", async (req, res) => {
   res.statusCode = 200;
   res.setHeader('Content-Type', 'application/json');
   res.json(r);
-})
+});
 

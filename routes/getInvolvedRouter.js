@@ -37,6 +37,6 @@ getInvolvedRouter.route("/api/addEmail")
   res.statusCode = 200;
   res.setHeader('Content-Type', 'application/json');
   res.json(r);
-})
+});
 
 module.exports = getInvolvedRouter;
