@@ -68,9 +68,9 @@ mongoose.connect(uri, {
 
 
 app.route("/api/getEmails")
-.options(cors.corsWithOptions, (req, res) => res.sendStatus(200))
+// .options(cors.corsWithOptions, (req, res) => res.sendStatus(200))
 .get(cors.cors, (req, res, next) => {
-  res.set('Access-Control-Allow-Origin', '*');
+  res.set('Access-Control-Allow-Origin', 'https://www.allworkersunion.com');
   StrikeEmailsModel.countDocuments({}, (err, result) => {
     if (err) {
       res.json("Error: " + err);
