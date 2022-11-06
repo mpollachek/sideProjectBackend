@@ -4,7 +4,8 @@ const whitelist = ['http://localhost:3000', 'https://www.allworkersunion.com'];
 const corsOptionsDelegate = (req, callback) => {
     let corsOptions = {
       credentials: true,
-      allowedHeaders: 'Content-Type, Authorization'
+      allowedHeaders: 'Content-Type, Authorization',
+      "methods": "GET, POST"
     }
     console.log(req.header('Origin'));
     if(whitelist.indexOf(req.header('Origin')) !== -1) {
