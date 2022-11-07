@@ -3,7 +3,7 @@ const app = express();
 const mongoose = require('mongoose')
 const StrikeEmailsModel = require('./models/StrikeEmails');
 const newsletterEmailsModel = require('./models/NewsletterEmails');
-//const { mongoPassword, mongoString } = require('./config');
+const { mongoPassword, mongoString } = require('./config');
 //const { createProxyMiddleware } = require('http-proxy-middleware')
 
 const cors = require("./routes/cors");
@@ -45,10 +45,10 @@ app.use(express.json());
 
 
 // const getInvolvedRouter = require('./routes/getInvolvedRouter');
-// const uri = `mongodb+srv://mpollachek81:${mongoPassword}@awu0.${mongoString}.mongodb.net/allWorkersUnionDB?retryWrites=true&w=majority`;
+const uri = `mongodb+srv://mpollachek81:${mongoPassword}@awu0.${mongoString}.mongodb.net/allWorkersUnionDB?retryWrites=true&w=majority`;
 const port = process.env.PORT || 3001;
 
-const uri = process.env.MONGODB_URI;
+// const uri = process.env.MONGODB_URI;
 
 mongoose.connect(uri, {
   useNewUrlParser: true,
