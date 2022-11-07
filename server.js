@@ -80,7 +80,7 @@ app.route("/api/getEmails")
 });
 
 app.route("/api/addEmail")
-.post(cors.corsWithOptions, async (req, res, next) => {
+.post(cors.cors, async (req, res, next) => {
   const r = req.body.values
   console.log("full req: " + JSON.stringify(r))
   if (r.strike) {
