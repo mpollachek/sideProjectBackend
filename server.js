@@ -80,8 +80,26 @@ app.route("/api/getEmails")
   });
 });
 
-app.route("/api/addEmail")
-.post(cors.corsWithOptions, async (req, res, next) => {
+// app.route("/api/addEmail")
+// .post(cors.corsWithOptions, async (req, res, next) => {
+//   const r = req.body.values
+//   console.log("full req: " + JSON.stringify(r))
+//   if (r.strike) {
+//     const strikeEmail= new StrikeEmailsModel(r);
+//     await strikeEmail.save();
+//   } 
+
+//   if (r.newsletter) {
+//     const newsletterEmail= new newsletterEmailsModel(r);
+//     await newsletterEmail.save();
+//   } 
+
+//   res.statusCode = 200;
+//   res.setHeader('Content-Type', 'application/json');
+//   res.json(r);
+// });
+
+app.post("/api/addEmail", async (req, res) => {
   const r = req.body.values
   console.log("full req: " + JSON.stringify(r))
   if (r.strike) {
@@ -98,22 +116,4 @@ app.route("/api/addEmail")
   res.setHeader('Content-Type', 'application/json');
   res.json(r);
 });
-
-// app.post("/api/addEmail", async (req, res) => {
-//   const r = req.body.values
-//   console.log("full req: " + JSON.stringify(r))
-//   if (r.strike) {
-//     const strikeEmail= new StrikeEmailsModel(r);
-//     await strikeEmail.save();
-//   } 
-
-//   if (r.newsletter) {
-//     const newsletterEmail= new newsletterEmailsModel(r);
-//     await newsletterEmail.save();
-//   } 
-
-//   res.statusCode = 200;
-//   res.setHeader('Content-Type', 'application/json');
-//   res.json(r);
-// })
 
