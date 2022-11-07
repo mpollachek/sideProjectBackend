@@ -68,7 +68,6 @@ mongoose.connect(uri, {
 
 
 app.route("/api/getEmails")
-.options(cors.corsWithOptions, (req, res) => res.sendStatus(200))
 .get(cors.cors, (req, res, next) => {
   res.set('Access-Control-Allow-Origin', 'https://www.allworkersunion.com');
   StrikeEmailsModel.countDocuments({}, (err, result) => {
@@ -81,8 +80,7 @@ app.route("/api/getEmails")
 });
 
 app.route("/api/addEmail")
-.options(cors.corsWithOptions)
-.post(cors.cors, async (req, res, next) => {
+.post(cors.corsWithOptions, async (req, res, next) => {
   const r = req.body.values
   console.log("full req: " + JSON.stringify(r))
   if (r.strike) {
