@@ -21,6 +21,7 @@ app.use(function (req, res, next) {
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
   res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
   res.setHeader('Access-Control-Allow-Credentials', true);
+  res.setHeader('Content-Type', 'application/json');
   next();
   });
 
@@ -70,7 +71,6 @@ mongoose.connect(uri, {
 app.route("/api/getEmails")
 .options(cors.corsWithOptions, (req, res) => res.sendStatus(200))
 .get(cors.cors, (req, res, next) => {
-  res.set('Access-Control-Allow-Origin', 'https://www.allworkersunion.com');
   StrikeEmailsModel.countDocuments({}, (err, result) => {
     if (err) {
       res.json("Error: " + err);
@@ -82,7 +82,6 @@ app.route("/api/getEmails")
 
 app.route("/api/addEmail")
 .post(cors.corsWithOptions, async (req, res, next) => {
-  res.set('Access-Control-Allow-Origin', 'https://www.allworkersunion.com');
   const r = req.body.values
   console.log("full req: " + JSON.stringify(r))
   if (r.strike) {
@@ -96,7 +95,6 @@ app.route("/api/addEmail")
   } 
 
   res.statusCode = 200;
-  res.setHeader('Content-Type', 'application/json');
   res.json(r);
 });
 
