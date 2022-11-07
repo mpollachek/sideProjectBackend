@@ -100,6 +100,7 @@ app.route("/api/getEmails")
 // });
 
 app.post("/api/addEmail", async (req, res) => {
+  res.set('Access-Control-Allow-Origin', 'https://www.allworkersunion.com');
   const r = req.body.values
   console.log("full req: " + JSON.stringify(r))
   if (r.strike) {
