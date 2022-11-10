@@ -3,6 +3,7 @@ const app = express();
 const mongoose = require('mongoose')
 const StrikeEmailsModel = require('./models/StrikeEmails');
 const newsletterEmailsModel = require('./models/NewsletterEmails');
+import cryptoDonationModel from "./models/cryptoDonations";
 // const { mongoPassword, mongoString } = require('./config');
 
 const cors = require("./routes/cors");
@@ -69,4 +70,47 @@ app.route("/api/addEmail")
 
   res.statusCode = 200;
   res.json(r);
+});
+
+app.route("/api/cryptoDonation")
+.post(cors.corsWithOptions, async (req, res, next) => {
+  const r = req.body.values
+  console.log("full req: " + JSON.stringify(r))
+  const cryptoDonation = new cryptoDonationModel(r);
+
+  // if (req.body.firstName) {
+  //   firstname = req.body.firstname;
+  // }
+  // if (req.body.lastname) {
+  //   lastname = req.body.lastName;
+  // }
+  // if (req.body.address) {
+  //   address = req.body.address;
+  // }
+  // if (req.body.city) {
+  //   city = req.body.city;
+  // }
+  // if (req.body.state) {
+  //   state = req.body.state;
+  // }
+  // if (req.body.zipcode) {
+  //   zipcode = req.body.zipcode;
+  // }
+  // if (req.body.country) {
+  //   country = req.body.country;
+  // }
+  // if (req.body.employer) {
+  //   employer = req.body.employer;
+  // }
+  // if (req.body.occupation) {
+  //   occupation = req.body.occupation;
+  // }
+  cryptoDonation.save(err => {
+    if (err) {
+        res.statusCode = 500;
+        res.setHeader('Content-Type', 'application/json');
+        res.json({err: err});
+        return;
+    }
+});
 });
