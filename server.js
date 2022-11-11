@@ -3,7 +3,7 @@ const app = express();
 const mongoose = require('mongoose')
 const StrikeEmailsModel = require('./models/StrikeEmails');
 const newsletterEmailsModel = require('./models/NewsletterEmails');
-import cryptoDonationModel from "./models/cryptoDonations";
+const cryptoDonationModel = require("./models/cryptoDonations");
 // const { mongoPassword, mongoString } = require('./config');
 
 const cors = require("./routes/cors");
